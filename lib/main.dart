@@ -64,7 +64,7 @@ class _homepageState extends State<homepage> {
             decoration:
                 BoxDecoration(color: Color.fromARGB(255, 244, 246, 247)),
             child: Icon(
-              Icons.apple_sharp,
+              Icons.home,
               size: 30,
             ),
           ),
@@ -74,7 +74,7 @@ class _homepageState extends State<homepage> {
             decoration:
                 BoxDecoration(color: Color.fromARGB(255, 244, 246, 247)),
             child: Icon(
-              Icons.beach_access,
+              Icons.search,
               size: 30,
             ),
           ),
@@ -99,18 +99,17 @@ class _homepageState extends State<homepage> {
           child: Column(
             children: <Widget>[
               Container(
-                  child: Row(
-                children: [
-                  Container(
-                    child:
-                        Text(DateFormat("yyyy-MM-dd").format(DateTime.now())),
-                    height: 100,
-                  ),
-                  Container(
-                    child: Text('Current date and time: '),
-                  )
-                ],
-              )),
+                
+                  
+                 
+                    
+                    child: date_time (),
+                  
+                
+              ),
+
+              SizedBox(height: 10,),
+
               Container(
                 height: 220,
                 width: 400,
@@ -123,10 +122,11 @@ class _homepageState extends State<homepage> {
                   ),
                 ),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 15),
+              
               Container(
                 child: ListTile(
-                  title: Text("Hello friend, have a good day ahead"),
+                  title: Text("Let's get started with these features"),
                   textColor: Colors.blue,
                 ),
               ),
@@ -212,4 +212,18 @@ class _homepageState extends State<homepage> {
       ),
     );
   }
+}
+
+
+class date_time extends StatelessWidget {
+ @override
+Widget build(BuildContext context) {
+DateTime now = DateTime.now(); 
+String formattedDate = DateFormat('MMM d EEE         kk:mm:ss ').format(now);
+return Container(
+  
+          child:Center(child: Text(formattedDate,textAlign: TextAlign.center,style: new TextStyle(fontWeight: FontWeight.bold,fontSize: 20.0)
+          ),),);
+        
+}
 }
