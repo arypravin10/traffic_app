@@ -2,6 +2,11 @@
 
 A new Flutter project.
 
+It contains basic features such as:
+a. Traffic situation of different places.
+b. Record of all the police station in the city.
+c. Information about traffic rules and regulations.
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
