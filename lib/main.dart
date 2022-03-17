@@ -40,7 +40,7 @@ class _homepageState extends State<homepage> {
       appBar: AppBar(
         title: Text('Traffic Simulator '),
       ),
-      backgroundColor: Color.fromARGB(255, 248, 246, 246),
+      backgroundColor: Color.fromARGB(255, 243, 245, 248),
 
 // For the bottom navigation bar
 
@@ -99,17 +99,11 @@ class _homepageState extends State<homepage> {
           child: Column(
             children: <Widget>[
               Container(
-                
-                  
-                 
-                    
-                    child: date_time (),
-                  
-                
+                child: date_time(),
               ),
-
-              SizedBox(height: 10,),
-
+              SizedBox(
+                height: 10,
+              ),
               Container(
                 height: 220,
                 width: 400,
@@ -123,7 +117,6 @@ class _homepageState extends State<homepage> {
                 ),
               ),
               SizedBox(height: 15),
-              
               Container(
                 child: ListTile(
                   title: Text("Let's get started with these features"),
@@ -133,7 +126,7 @@ class _homepageState extends State<homepage> {
               Container(
                 height: 250,
                 width: 300,
-                color: Color.fromARGB(255, 239, 244, 247),
+                color: Color.fromARGB(255, 236, 238, 240),
                 child: Padding(
                   padding: EdgeInsets.all(15),
                   child: Column(
@@ -145,59 +138,137 @@ class _homepageState extends State<homepage> {
                         children: <Widget>[
                           Card(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Center(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 40,
-                                    width: 60,
-                                    decoration: const BoxDecoration(
-                                        image: DecorationImage(
-                                            image:
-                                                AssetImage('assets/news.png'),
-                                            fit: BoxFit.fill)),
+                                borderRadius: BorderRadius.circular(35)),
+                            child: Column(
+                              children: [
+                                Container(
+                                  child: Icon(
+                                    Icons.newspaper,
+                                    size: 40,
                                   ),
-                                  Container(
-                                    child: Text("Traffic \n News"),
+                                ),
+                                Container(
+                                  child: Text(
+                                    'Traffic \n News',
+                                    style: new TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15.0,
+                                        color: Colors.blue),
                                   ),
-                                ],
-                              ),
+                                )
+                              ],
                             ),
                           ),
-                          Card(
+                          
+ Card(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Center(
-                              child: Text("Traffic \n Rules"),
+                                borderRadius: BorderRadius.circular(35)),
+                            child: Column(
+                              children: [
+                                Container(
+                                  child: Icon(
+                                    Icons.traffic,
+                                    size: 40,
+                                  ),
+                                ),
+                                Container(
+                                  child: Text(
+                                    'Traffic \n Rules',
+                                    style: new TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15.0,
+                                        color: Colors.blue),
+                                  ),
+                                )
+                              ],
                             ),
-                          ),
-                          Card(
+                          ), Card(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Center(
-                              child: Text("Police \n Stations"),
+                                borderRadius: BorderRadius.circular(35)),
+                            child: Column(
+                              children: [
+                                Container(
+                                  child: Icon(
+                                    Icons.traffic_sharp,
+                                    size: 40,
+                                  ),
+                                ),
+                                Container(
+                                  child: Text(
+                                    'Traffic \n Stations',
+                                    style: new TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15.0,
+                                        color: Colors.blue),
+                                  ),
+                                )
+                              ],
                             ),
-                          ),
-                          Card(
+                          ), Card(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Center(
-                              child: Text("Parking \n Areas"),
+                                borderRadius: BorderRadius.circular(35)),
+                            child: Column(
+                              children: [
+                                Container(
+                                  child: Icon(
+                                    Icons.local_parking,
+                                    size: 40,
+                                  ),
+                                ),
+                                Container(
+                                  child: Text(
+                                    'Parking \n Areas',
+                                    style: new TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15.0,
+                                        color: Colors.blue),
+                                  ),
+                                )
+                              ],
                             ),
-                          ),
-                          Card(
+                          ), Card(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Center(
-                              child: Text("Fuel \n Stations"),
+                                borderRadius: BorderRadius.circular(35)),
+                            child: Column(
+                              children: [
+                                Container(
+                                  child: Icon(
+                                    Icons.plumbing_sharp,
+                                    size: 40,
+                                  ),
+                                ),
+                                Container(
+                                  child: Text(
+                                    ' Fuel \n Station',
+                                    style: new TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15.0,
+                                        color: Colors.blue),
+                                  ),
+                                )
+                              ],
                             ),
-                          ),
-                          Card(
+                          ), Card(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Center(
-                              child: Text("Places \n to Visit"),
+                                borderRadius: BorderRadius.circular(35)),
+                            child: Column(
+                              children: [
+                                Container(
+                                  child: Icon(
+                                    Icons.nature,
+                                    size: 40,
+                                  ),
+                                ),
+                                Container(
+                                  child: Text(
+                                    'Places \n to Visit',
+                                    style: new TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15.0,
+                                        color: Colors.blue),
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                         ],
@@ -214,16 +285,18 @@ class _homepageState extends State<homepage> {
   }
 }
 
-
 class date_time extends StatelessWidget {
- @override
-Widget build(BuildContext context) {
-DateTime now = DateTime.now(); 
-String formattedDate = DateFormat('MMM d EEE         kk:mm:ss ').format(now);
-return Container(
-  
-          child:Center(child: Text(formattedDate,textAlign: TextAlign.center,style: new TextStyle(fontWeight: FontWeight.bold,fontSize: 20.0)
-          ),),);
-        
-}
+  @override
+  Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    String formattedDate =
+        DateFormat('MMM d EEE         kk:mm:ss ').format(now);
+    return Container(
+      child: Center(
+        child: Text(formattedDate,
+            textAlign: TextAlign.center,
+            style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0)),
+      ),
+    );
+  }
 }
