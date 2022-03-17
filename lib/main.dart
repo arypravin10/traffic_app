@@ -159,8 +159,7 @@ class _homepageState extends State<homepage> {
                               ],
                             ),
                           ),
-                          
- Card(
+                          Card(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(35)),
                             child: Column(
@@ -182,7 +181,8 @@ class _homepageState extends State<homepage> {
                                 )
                               ],
                             ),
-                          ), Card(
+                          ),
+                          Card(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(35)),
                             child: Column(
@@ -204,7 +204,8 @@ class _homepageState extends State<homepage> {
                                 )
                               ],
                             ),
-                          ), Card(
+                          ),
+                          Card(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(35)),
                             child: Column(
@@ -226,7 +227,8 @@ class _homepageState extends State<homepage> {
                                 )
                               ],
                             ),
-                          ), Card(
+                          ),
+                          Card(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(35)),
                             child: Column(
@@ -248,7 +250,8 @@ class _homepageState extends State<homepage> {
                                 )
                               ],
                             ),
-                          ), Card(
+                          ),
+                          Card(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(35)),
                             child: Column(
