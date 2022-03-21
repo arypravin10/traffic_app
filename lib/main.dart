@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,6 +26,18 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
+final List <String> images_list=[
+  'assets/nepal.jpg',
+  'assets/monutain.jpg',
+  'assets/road.jpg',
+  'assets/smb.jpg',
+  'assets/tower.jpg',
+  'assets/baudha.jpg',
+  'assets/everest.jpg',
+
+
+];
 
 class homepage extends StatefulWidget {
   homepage({Key? key}) : super(key: key);
@@ -78,6 +91,8 @@ class _homepageState extends State<homepage> {
               size: 30,
             ),
           ),
+
+          
           Container(
             height: 50,
             width: MediaQuery.of(context).size.width / 4,
@@ -104,29 +119,53 @@ class _homepageState extends State<homepage> {
               SizedBox(
                 height: 10,
               ),
+
               Container(
-                height: 220,
-                width: 400,
-                color: Color.fromARGB(255, 197, 196, 196),
-                child: Container(
-                  child: Image(
-                    image: AssetImage('assets/nepal.jpg'),
-                    fit: BoxFit
-                        .cover, /*fits the image to the fullest fill stretchs while cover zooms*/
-                  ),
-                ),
+                child: picture_slider(),
               ),
+
+            
+
+              // Container(
+              //   height: 220,
+              //   width: 400,
+              //   child: Container(
+              //     decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(20),
+              //       gradient: LinearGradient(colors: [
+              //         Color.fromRGBO(30, 40, 50, 0.2),
+              //         Color.fromRGBO(10, 20, 255, 0.8)
+              //       ], begin: Alignment.centerRight, end: Alignment.topLeft),
+              //       image: DecorationImage(
+              //         image: AssetImage('assets/nepal.jpg'),
+              //         // fit: BoxFit
+              //         //     .cover, /*fits the image to the fullest fill stretchs while cover zooms*/
+              //         fit: BoxFit.fill,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+
               SizedBox(height: 15),
+
               Container(
                 child: ListTile(
                   title: Text("Let's get started with these features"),
                   textColor: Colors.blue,
                 ),
               ),
+
+            
               Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  gradient: LinearGradient(colors: [
+                    Color.fromARGB(244, 246, 248, 248),
+                    Color.fromARGB(237, 249, 248, 250),
+                  ], begin: Alignment.topLeft, end: Alignment.topRight),
+                ),
                 height: 250,
                 width: 300,
-                color: Color.fromARGB(255, 236, 238, 240),
                 child: Padding(
                   padding: EdgeInsets.all(15),
                   child: Column(
@@ -138,7 +177,7 @@ class _homepageState extends State<homepage> {
                         children: <Widget>[
                           Card(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(35)),
+                                borderRadius: BorderRadius.circular(25)),
                             child: Column(
                               children: [
                                 Container(
@@ -161,7 +200,7 @@ class _homepageState extends State<homepage> {
                           ),
                           Card(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(35)),
+                                borderRadius: BorderRadius.circular(25)),
                             child: Column(
                               children: [
                                 Container(
@@ -184,7 +223,7 @@ class _homepageState extends State<homepage> {
                           ),
                           Card(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(35)),
+                                borderRadius: BorderRadius.circular(25)),
                             child: Column(
                               children: [
                                 Container(
@@ -207,7 +246,7 @@ class _homepageState extends State<homepage> {
                           ),
                           Card(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(35)),
+                                borderRadius: BorderRadius.circular(25)),
                             child: Column(
                               children: [
                                 Container(
@@ -230,7 +269,7 @@ class _homepageState extends State<homepage> {
                           ),
                           Card(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(35)),
+                                borderRadius: BorderRadius.circular(25)),
                             child: Column(
                               children: [
                                 Container(
@@ -253,7 +292,7 @@ class _homepageState extends State<homepage> {
                           ),
                           Card(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(35)),
+                                borderRadius: BorderRadius.circular(25)),
                             child: Column(
                               children: [
                                 Container(
@@ -270,12 +309,16 @@ class _homepageState extends State<homepage> {
                                         fontSize: 15.0,
                                         color: Colors.blue),
                                   ),
-                                )
+                                ),
+                             
+
                               ],
+                              
                             ),
                           ),
                         ],
                       ),
+                      
                     ],
                   ),
                 ),
@@ -292,13 +335,36 @@ class date_time extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
-    String formattedDate =
-        DateFormat('MMM d EEE         kk:mm:ss ').format(now);
+    String formattedDate = DateFormat('MMM d EEEE         kk:mm ').format(now);
     return Container(
       child: Center(
         child: Text(formattedDate,
             textAlign: TextAlign.center,
             style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0)),
+      ),
+    );
+  }
+}
+
+
+class picture_slider extends StatefulWidget {
+  picture_slider({Key? key}) : super(key: key);
+
+  @override
+  State<picture_slider> createState() => _picture_sliderState();
+}
+
+class _picture_sliderState extends State<picture_slider> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: CarouselSlider(items: images_list.map((e) => ClipRRect(borderRadius: BorderRadius.circular(10),child: Stack(fit: StackFit.expand,children: <Widget>[
+        Image.asset(e,width: 220,height: 400,fit: BoxFit.cover,)
+      ],),)).toList(), options: CarouselOptions(
+        enlargeCenterPage: true,
+        enableInfiniteScroll: false,
+        autoPlay: true,
+      ),
       ),
     );
   }
