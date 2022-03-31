@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "338192867759",
+    "project_id": "traffic-app-340416",
+    "storage_bucket": "traffic-app-340416.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338192867759:android:f23e32f8df9fa156e08f5a",
+        "android_client_info": {
+          "package_name": "com.example.traffic_simulator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "338192867759-5sdua3f75aki15i2mgml78ccvvhoaqua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTPKDf2EtWWmaa5VlDyhlcxHp9lgMyc2Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "338192867759-5sdua3f75aki15i2mgml78ccvvhoaqua.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

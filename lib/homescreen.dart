@@ -1,0 +1,593 @@
+import 'package:flutter/material.dart';
+import 'pict_slide.dart';
+import 'time_date.dart';
+import 'drawer.dart';
+import 'dart:ui';
+
+import 'package:firebase_core/firebase_core.dart';
+
+class homepage extends StatefulWidget {
+  homepage({Key? key}) : super(key: key);
+
+  @override
+  State<homepage> createState() => _homepageState();
+}
+
+class _homepageState extends State<homepage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: My_drawer(),
+      appBar: AppBar(
+        title: Text('Traffic Simulator '),
+        centerTitle: true,
+        
+      ),
+      backgroundColor: Color.fromARGB(255, 243, 245, 248),
+
+// For the bottom navigation bar
+
+      bottomNavigationBar: Row(
+        children: [
+          Container(
+            height: 50,
+            width: MediaQuery.of(context).size.width / 4,
+            /*for 4 icons to be inserted*/
+            decoration:
+                BoxDecoration(color: Color.fromARGB(255, 244, 246, 247)),
+            child: Icon(
+              Icons.settings,
+              size: 30,
+            ),
+          ),
+          Container(
+            height: 50,
+            width: MediaQuery.of(context).size.width / 4,
+            /*for 4 icons to be inserted*/
+            decoration:
+                BoxDecoration(color: Color.fromARGB(255, 244, 246, 247)),
+            child: Icon(
+              Icons.home,
+              size: 30,
+            ),
+          ),
+          Container(
+            height: 50,
+            width: MediaQuery.of(context).size.width / 4,
+            decoration:
+                BoxDecoration(color: Color.fromARGB(255, 244, 246, 247)),
+            child: Icon(
+              Icons.search,
+              size: 30,
+            ),
+          ),
+          Container(
+            
+            height: 50,
+            width: MediaQuery.of(context).size.width / 4,
+            decoration:
+                BoxDecoration(color: Color.fromARGB(255, 244, 246, 247)),
+            child: Icon(
+              Icons.person,
+              size: 30,
+            ),
+          ),
+        ],
+      ),
+
+      // For the centre body part
+
+      body: Center(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.all(25),
+          child: Column(
+            children: <Widget>[
+              Container(
+                child: date_time(),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+
+              Container(
+                child: picture_slider(),
+              ),
+
+              // Container(
+              //   height: 220,
+              //   width: 400,
+              //   child: Container(
+              //     decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(20),
+              //       gradient: LinearGradient(colors: [
+              //         Color.fromRGBO(30, 40, 50, 0.2),
+              //         Color.fromRGBO(10, 20, 255, 0.8)
+              //       ], begin: Alignment.centerRight, end: Alignment.topLeft),
+              //       image: DecorationImage(
+              //         image: AssetImage('assets/nepal.jpg'),
+              //         // fit: BoxFit
+              //         //     .cover, /*fits the image to the fullest fill stretchs while cover zooms*/
+              //         fit: BoxFit.fill,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+
+              SizedBox(height: 15),
+
+              Container(
+                child: ListTile(
+                  title: Text("Let's get started with these features"),
+                  textColor: Colors.blue,
+                ),
+              ),
+
+          
+
+              SizedBox(
+                height: 15,
+              ),
+
+              Container(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 25, sigmaY: 45),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        gradient: LinearGradient(colors: [
+                          Color.fromARGB(244, 246, 248, 248),
+                          Color.fromARGB(237, 249, 248, 250),
+                        ], begin: Alignment.topLeft, end: Alignment.topRight),
+                      ),
+                      height: 250,
+                      width: 300,
+                      child: Padding(
+                        padding: EdgeInsets.all(15),
+                        child: Column(
+                          children: <Widget>[
+                            GridView.count(
+                              shrinkWrap: true,
+                              physics: ClampingScrollPhysics(),
+                              crossAxisCount: 3,
+                              children: <Widget>[
+                                // Card(
+                                //   shape: RoundedRectangleBorder(
+                                //       borderRadius: BorderRadius.circular(25)),
+                                //   child: Column(
+                                //     children: [
+                                //       Container(
+                                //         child: Icon(
+                                //           Icons.traffic,
+                                //           size: 40,
+                                //         ),
+                                //       ),
+                                //       Container(
+                                //         child: RaisedButton(
+                                //           onPressed: () {
+                                //             Navigator.push(
+                                //                 context,
+                                //                 MaterialPageRoute(
+                                //                     builder: (context) =>
+                                //                         News_page(),),);
+                                //           },
+                                //           child: Text(
+                                //             'Traffic \n News',
+                                //             style: new TextStyle(
+                                //                 // fontWeight: FontWeight.bold,
+                                //                 fontSize: 15.0,
+                                //                 color: Colors.blue),
+                                //           ),
+                                //         ),
+                                //       ),
+                                //     ],
+                                //   ),
+                                // ),
+                                // Card(
+                                //   shape: RoundedRectangleBorder(
+                                //       borderRadius: BorderRadius.circular(25)),
+                                //   child: Column(
+                                //     children: [
+                                //       Container(
+                                //         child: Icon(
+                                //           Icons.traffic,
+                                //           size: 40,
+                                //         ),
+                                //       ),
+                                //       Container(
+                                //         child: Text(
+                                //           'Traffic \n Rules',
+                                //           style: new TextStyle(
+                                //               // fontWeight: FontWeight.bold,
+                                //               fontSize: 15.0,
+                                //               color: Colors.blue),
+                                //         ),
+                                //       )
+                                //     ],
+                                //   ),
+                                // ),
+                                // Card(
+                                //   shape: RoundedRectangleBorder(
+                                //       borderRadius: BorderRadius.circular(25)),
+                                //   child: Column(
+                                //     children: [
+                                //       Container(
+                                //         child: Icon(
+                                //           Icons.local_police,
+                                //           size: 40,
+                                //         ),
+                                //       ),
+                                //       Container(
+                                //         child: Text(
+                                //           'Traffic \n Stations',
+                                //           style: new TextStyle(
+                                //               // fontWeight: FontWeight.bold,
+                                //               fontSize: 15.0,
+                                //               color: Colors.blue),
+                                //         ),
+                                //       )
+                                //     ],
+                                //   ),
+                                // ),
+                                // Card(
+                                //   shape: RoundedRectangleBorder(
+                                //       borderRadius: BorderRadius.circular(25)),
+                                //   child: Column(
+                                //     children: [
+                                //       Container(
+                                //         child: Icon(
+                                //           Icons.local_parking,
+                                //           size: 40,
+                                //         ),
+                                //       ),
+                                //       Container(
+                                //         child: Text(
+                                //           'Parking \n Areas',
+                                //           style: new TextStyle(
+                                //               // fontWeight: FontWeight.bold,
+                                //               fontSize: 15.0,
+                                //               color: Colors.blue),
+                                //         ),
+                                //       )
+                                //     ],
+                                //   ),
+                                // ),
+                                // Card(
+                                //   shape: RoundedRectangleBorder(
+                                //       borderRadius: BorderRadius.circular(25)),
+                                //   child: Column(
+                                //     children: [
+                                //       Container(
+                                //         child: Icon(
+                                //           Icons.ev_station,
+                                //           size: 40,
+                                //         ),
+                                //       ),
+                                //       Container(
+                                //         child: Text(
+                                //           ' Fuel \n Station',
+                                //           style: new TextStyle(
+                                //               // fontWeight: FontWeight.bold,
+                                //               fontSize: 15.0,
+                                //               color: Colors.blue),
+                                //         ),
+                                //       )
+                                //     ],
+                                //   ),
+                                // ),
+                               
+
+                                                               Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: SingleChildScrollView(
+                                    
+                                    child: Padding(padding: EdgeInsets.all(4.5),
+                                    child:
+                                    Column(
+                                    
+                                      children: [
+                                        Container(
+                                          
+                                          
+                                          child: ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white),shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                                         ),
+                                          onPressed: (){Navigator.push(context, MaterialPageRoute(builder: ((context) => Traffic_news())));}, 
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                child: Icon(Icons.traffic,color: Colors.black,size: 40,),
+                                              ),
+
+                                              Container(
+                                                child: Text('Traffic News',style: TextStyle(color: Colors.blue),),
+                                              )
+                                            ],
+                                          ),),
+                                        )
+                                      ],
+                                      
+                                    ),
+                                  ),
+                                  )
+                                ),
+
+                                                                Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: SingleChildScrollView(
+                                    
+                                    child: Padding(padding: EdgeInsets.all(3.5),
+                                    child:
+                                    Column(
+                                    
+                                      children: [
+                                        Container(
+                                          
+                                          
+                                          child: ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white),shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                                         ),
+                                          onPressed: (){Navigator.push(context, MaterialPageRoute(builder: ((context) => Traffic_rules())));}, 
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                child: Icon(Icons.traffic,color: Colors.black,size: 42,),
+                                              ),
+
+                                              Container(
+                                                child: Text('Traffic Rules',style: TextStyle(color: Colors.blue),),
+                                              )
+                                            ],
+                                          ),),
+                                        )
+                                      ],
+                                      
+                                    ),
+                                  ),
+                                  )
+                                ),
+
+                                                                Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: SingleChildScrollView(
+                                    
+                                    child: Padding(padding: EdgeInsets.all(2.5),
+                                    child:
+                                    Column(
+                                    
+                                      children: [
+                                        Container(
+                                          
+                                          
+                                          child: ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white),shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                                         ),
+                                          onPressed: (){Navigator.push(context, MaterialPageRoute(builder: ((context) => Traffic_stations())));}, 
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                child: Icon(Icons.local_police,color: Colors.black,size:43,),
+                                              ),
+
+                                              Container(
+                                                child: Text('Traffic Station',style: TextStyle(color: Colors.blue),),
+                                              )
+                                            ],
+                                          ),),
+                                        )
+                                      ],
+                                      
+                                    ),
+                                  ),
+                                  )
+                                ),
+
+                                                                Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: SingleChildScrollView(
+                                    
+                                    child: Padding(padding: EdgeInsets.all(1.0),
+                                    child:
+                                    Column(
+                                    
+                                      children: [
+                                        Container(
+                                          
+                                          
+                                          child: ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white),shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                                         ),
+                                          onPressed: (){Navigator.push(context, MaterialPageRoute(builder: ((context) => Parking_areas())));}, 
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                child: Icon(Icons.local_parking,color: Colors.black,size: 43,),
+                                              ),
+
+                                              Container(
+                                                child: Text('Parking Areas',style: TextStyle(color: Colors.blue),),
+                                              )
+                                            ],
+                                          ),),
+                                        )
+                                      ],
+                                      
+                                    ),
+                                  ),
+                                  )
+                                ),
+
+                                                                Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: SingleChildScrollView(
+                                    
+                                    child: Padding(padding: EdgeInsets.all(2.1),
+                                    child:
+                                    Column(
+                                    
+                                      children: [
+                                        Container(
+                                          
+                                          
+                                          child: ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white),shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                                         ),
+                                          onPressed: (){Navigator.push(context, MaterialPageRoute(builder: ((context) => Fuel_station())));}, 
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                child: Icon(Icons.ev_station,color: Colors.black,size: 42,),
+                                              ),
+
+                                              Container(
+                                                child: Text('Fuel Station',style: TextStyle(color: Colors.blue),),
+                                              )
+                                            ],
+                                          ),),
+                                        )
+                                      ],
+                                      
+                                    ),
+                                  ),
+                                  )
+                                ),
+                               
+                                Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(25)),
+                                  child: SingleChildScrollView(
+                                    
+                                    child: Padding(padding: EdgeInsets.all(1.5),
+                                    child:
+                                    Column(
+                                    
+                                      children: [
+                                        Container(
+                                          
+                                          
+                                          child: ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white),shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                                         ),
+                                          onPressed: (){Navigator.push(context, MaterialPageRoute(builder: ((context) => Places_to_visit())));}, 
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                child: Icon(Icons.place,color: Colors.black,size: 44,),
+                                              ),
+
+                                              Container(
+                                                child: Text('Places\nto Visit',style: TextStyle(color: Colors.blue),),
+                                              )
+                                            ],
+                                          ),),
+                                        )
+                                      ],
+                                      
+                                    ),
+                                  ),
+                                  )
+                                ),
+
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// for traffic news
+
+class Traffic_news extends StatelessWidget {
+  const Traffic_news({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('News'),
+        backgroundColor: Colors.blue,
+      ),
+    );
+  }
+}
+
+
+// for traffic rules
+
+class Traffic_rules extends StatelessWidget {
+  const Traffic_rules({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Traffic Rules'),
+      backgroundColor: Colors.red,),
+    );
+  }
+}
+
+// for traffic stations
+
+class Traffic_stations extends StatelessWidget {
+  const Traffic_stations({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(appBar: AppBar(
+      title: Text('Traffic Stations'),
+      backgroundColor: Colors.grey,
+    ),);
+  }
+}
+
+class Parking_areas extends StatelessWidget {
+  const Parking_areas({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(appBar: AppBar(
+      title: Text('Areas For Parking'),
+      backgroundColor: Colors.pink,),);
+  }
+}
+
+// for fuel stations
+
+class Fuel_station extends StatelessWidget {
+  const Fuel_station({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+ return Scaffold(appBar: AppBar(
+      title: Text('Fuel Stations'),
+      backgroundColor: Colors.brown,),
+   );  }
+}
+
+
+
+// for places to visit
+
+class Places_to_visit extends StatelessWidget {
+  const Places_to_visit({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(appBar: AppBar(
+      title: Text('Places to Visit'),
+      backgroundColor: Colors.green,
+      
+    )
+    );
+  }
+}
