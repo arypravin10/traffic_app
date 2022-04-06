@@ -4,27 +4,34 @@ import 'package:firebase_core/firebase_core.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  MyApp({ Key? key }) : super(key: key);
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
 
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
+  @override 
   Widget build(BuildContext context) {
+
+     return FutureBuilder(
+        future: _initialization,
+        builder: (context, snapshot) {
+          // Check for Errors
+          if (snapshot.hasError) {
+            print("Something went wrong");
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
       home: LoginScreen(),
-    );
+   
+          );
+        });
   }
 }
-

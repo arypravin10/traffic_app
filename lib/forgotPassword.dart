@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import 'package:traffic_simulator/inputTextWidget.dart';
 import 'LoginScreen.dart';
 
@@ -14,7 +12,11 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
+
+  // for validating form field the user entered such as email or password
   final _formKey = GlobalKey<FormState>();
+
+  // for tracking the changes to those text fields
   final TextEditingController _pass = TextEditingController();
   final TextEditingController _confirmPass = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -28,8 +30,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         title: Text("Forgot Password",
             style: TextStyle(
               color: Colors.black,
-              fontFamily: 'Segoe UI',
-              fontSize: 30,
+              fontFamily: 'Roboto',
+              fontSize: 25,
               shadows: [
                 Shadow(
                   color: const Color(0xba000000),
@@ -40,7 +42,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             )),
         //centerTitle: true,
         leading: InkWell(
-          onTap: () => Get.to(LoginScreen()),
+          onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));},
           child: Icon(
             Icons.arrow_back,
             color: Colors.black,
@@ -82,7 +84,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   Text(
                     'Find Your Account',
                     style: TextStyle(
-                      fontFamily: 'Segoe UI',
+                      fontFamily: 'Roboto',
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                       color: const Color(0xff000000),

@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "338192867759-s18q5m5b82tpoihbfrejbrqaii40hhe0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.traffic_simulator",
+            "certificate_hash": "41adbc56b87105bf00a4ba8d9305d4000305d625"
+          }
+        },
+        {
           "client_id": "338192867759-5sdua3f75aki15i2mgml78ccvvhoaqua.apps.googleusercontent.com",
           "client_type": 3
         }

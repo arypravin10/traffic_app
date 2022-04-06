@@ -41,7 +41,7 @@ class _My_drawerState extends State<My_drawer> {
             Divider(thickness: 5,color: Colors.black,),
 
              ListTile(
-            onTap: (){
+            onTap: () async{
               Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
             },
             leading: Icon(Icons.logout),

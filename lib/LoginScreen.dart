@@ -1,27 +1,51 @@
+
 import 'package:flutter/material.dart';
+import 'package:get/state_manager.dart';
 import 'package:traffic_simulator/homescreen.dart';
 import 'package:traffic_simulator/signUpScreen.dart';
 import 'package:traffic_simulator/inputTextWidget.dart';
 import 'package:traffic_simulator/forgotPassword.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:traffic_simulator/inputTextWidget.dart';
-import 'package:get/get.dart';
+
 
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen() : super();
+  const LoginScreen({ Key? key }) : super(key: key);
 
   @override
-  _SearchScreenState createState() => _SearchScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _SearchScreenState extends State<LoginScreen> {
-  final TextEditingController _pwdController = TextEditingController();
+class _LoginScreenState extends State<LoginScreen> {
 
-  bool showProgress = false;
+    final _formKey = GlobalKey<FormState>();
+
+  final TextEditingController _pwdController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
-  final snackBar = SnackBar(content: Text('email or password is incorrect'));
-  final _formKey = GlobalKey<FormState>();
+
+  var email='';
+  var password ='';
+
+// for firebase
+  final _auth =FirebaseAuth.instance;
+
+
+userlogin()async{
+  try{
+    await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+    Navigator.push(context, MaterialPageRoute(builder: (context) => homepage(),));
+  }
+
+  on FirebaseAuthException catch(e){
+    if (e.code =='user-not-found' || e.code=='wrong-password'){
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text('email or password is incorrect')));
+    }
+  }
+
+}
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +55,7 @@ class _SearchScreenState extends State<LoginScreen> {
     bool _pinned = false;
     bool _snap = false;
     bool _floating = false;
+
 
     final widgetList = [
       Row(
@@ -58,42 +83,75 @@ class _SearchScreenState extends State<LoginScreen> {
       ),
       Form(
           key: _formKey,
-          child: Column(
+          child: Padding(padding: EdgeInsets.all(20),
+          child:
+          Column(
             children: [
-              InputTextWidget(
+        
+             TextFormField(
+                
                   controller: _emailController,
-                  labelText: "email ",
-                  icon: Icons.email,
+                  decoration: InputDecoration(labelText: 'email',icon: Icon(Icons.email),labelStyle: TextStyle(fontSize: 20)),
                   
                   obscureText: false,
-                  keyboardType: TextInputType.emailAddress),
+                  keyboardType: TextInputType.emailAddress,
+                
+
+                  validator:(value){
+                    if (value!.isEmpty){
+
+                      return('Please enter your email');
+                    }
+                  
+
+                  if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9,-]+.[a-z]").hasMatch(value)){
+                    return('Enter a valid email');
+                  }
+
+                  return null;
+
+                  }
+                  
+                  ),
+
+                  
               SizedBox(
                 height: 12.0,
               ),
-              InputTextWidget(
+              
+              TextFormField(
                   controller: _pwdController,
+                  decoration: InputDecoration(
                   labelText: "password",
-                  icon: Icons.lock,
+                  icon: Icon(Icons.lock),labelStyle: TextStyle(fontSize: 20),),
+
                   obscureText: true,
-                  keyboardType: TextInputType.emailAddress),
+                  keyboardType: TextInputType.text,
+                  validator: (value){
+                    if (value==null || value.isEmpty){
+                      return ('Please enter your password');
+                    }
+                  },
+                  
+                  ),
               Padding(
                 padding: const EdgeInsets.only(right: 25.0, top: 10.0),
                 child: Align(
+                  
                     alignment: Alignment.topRight,
                     child: Material(
                       color: Colors.transparent,
                       child: InkWell(
                         onTap: ()
-                        {print
-                          ("forgot password clicked");
-                        Get.to(ForgotPassword());
+                        {Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotPassword(),));
                         },
                         child: Text(
                           "Forgot Password ?",
                           style: TextStyle(
-                              fontSize: 15,
+                            
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: Colors.grey[700]),
+                              color: Color.fromARGB(255, 218, 13, 13)),
                         ),
                       ),
                     )),
@@ -105,10 +163,15 @@ class _SearchScreenState extends State<LoginScreen> {
                 height: 55.0,
                 child: ElevatedButton(
                   onPressed: () async {
+
+ 
                     if (_formKey.currentState!.validate()) {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => homepage(),));
-                    }
-                    //Get.to(ChoiceScreen());
+                      setState(() {
+                        email=_emailController.text;
+                        password=_pwdController.text;
+                        
+                      });
+userlogin();                    }
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.white,
@@ -141,7 +204,7 @@ class _SearchScreenState extends State<LoginScreen> {
                 ),
               ),
             ],
-          )),
+          ),),),
       SizedBox(
         height: 15.0,
       ),
@@ -258,7 +321,8 @@ class _SearchScreenState extends State<LoginScreen> {
                   ),
               width: screenWidth,
               height: 25,
-              child: Column(
+              child: 
+              Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   Container(
@@ -319,3 +383,4 @@ class _SearchScreenState extends State<LoginScreen> {
     );
   }
 }
+
