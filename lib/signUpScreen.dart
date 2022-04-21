@@ -28,8 +28,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _confirmPass.dispose();
     super.dispose();
   }
+    User? user = FirebaseAuth.instance.currentUser;
 
-  registration() async {
+
+
+  registration() async {    
     if (password == confirmPassword) {
       try {
         UserCredential userCredential = await FirebaseAuth.instance
@@ -165,23 +168,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(
                         height: 12.0,
                       ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          labelText: "Contact No",
-                          icon: Icon(Icons.phone),
-                        ),
-                        obscureText: false,
-                        keyboardType: TextInputType.number,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            print('the number field is empty');
-                          }
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: 12.0,
-                      ),
+                      // TextFormField(
+                      //   decoration: InputDecoration(
+                      //     labelText: "Contact No",
+                      //     icon: Icon(Icons.phone),
+                      //   ),
+                      //   obscureText: false,
+                      //   keyboardType: TextInputType.number,
+                      //   validator: (value) {
+                      //     if (value == null || value.isEmpty) {
+                      //       print('the number field is empty');
+                      //     }
+                      //     return null;
+                      //   },
+                      // ),
+                      // SizedBox(
+                      //   height: 12.0,
+                      // ),
                       TextFormField(
                           obscureText: true,
                           autofocus: false,
@@ -240,9 +243,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 password = _pass.text;
                                 confirmPassword = _confirmPass.text;
                               });
-
                               registration();
-                            }
+
+                         }
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.white,
@@ -285,3 +288,4 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ));
   }
 }
+

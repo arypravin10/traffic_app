@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:traffic_simulator/inputTextWidget.dart';
 import 'LoginScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 
@@ -17,11 +18,41 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   final _formKey = GlobalKey<FormState>();
 
   // for tracking the changes to those text fields
-  final TextEditingController _pass = TextEditingController();
-  final TextEditingController _confirmPass = TextEditingController();
+  var email='';
+
   final TextEditingController _emailController = TextEditingController();
 
   @override
+
+
+    resetPassword() async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.orangeAccent,
+          content: Text(
+            'Password Reset Email has been sent !',
+            style: TextStyle(fontSize: 18.0),
+          ),
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.orangeAccent,
+            content: Text(
+              'No user found for that email.',
+              style: TextStyle(fontSize: 18.0),
+            ),
+          ),
+        );
+      }
+    }
+  }
+
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
@@ -29,7 +60,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       appBar: AppBar(
         title: Text("Forgot Password",
             style: TextStyle(
-              color: Colors.black,
+              color: Color.fromARGB(255, 233, 232, 232),
               fontFamily: 'Roboto',
               fontSize: 25,
               shadows: [
@@ -38,18 +69,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   offset: Offset(0, 3),
                   blurRadius: 6,
                 ),
+                
               ],
-            )),
+              
+            ),
+            ),
         //centerTitle: true,
-        leading: InkWell(
-          onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(),));},
-          child: Icon(
-            Icons.arrow_back,
-            color: Colors.black,
-          ),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
+          backgroundColor: Colors.green,
+
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 15.0),
@@ -76,16 +103,18 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             //controller: controller,
             child: Form(
               key: _formKey,
-              child: Column(
+              child: Padding(padding: EdgeInsets.all(20),
+              child:
+              Column(
                 children: [
                   SizedBox(
                     height: 30.0,
                   ),
                   Text(
-                    'Find Your Account',
+                    'Find your account here',
                     style: TextStyle(
                       fontFamily: 'Roboto',
-                      fontSize: 30,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: const Color(0xff000000),
 
@@ -95,9 +124,22 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   SizedBox(
                     height: 25.0,
                   ),
-                  InputTextWidget(
+                  TextFormField(
+                    decoration: InputDecoration(
+                      
                       labelText: "Enter your email address",
-                      icon: Icons.email,
+                      icon: Icon(Icons.email),
+                      ),
+                      validator: (value){
+                        if (value ==null || value.isEmpty){
+                          print('Please enter your email');
+                        }
+                        else if (!value.contains('@')){
+                          print('Please enter a valid email');
+
+                        }
+                        return null;
+                      },
                       obscureText: false,
                       keyboardType: TextInputType.emailAddress),
                   SizedBox(
@@ -110,7 +152,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     height: 55.0,
     child: ElevatedButton(
     onPressed: () async {
-    if (_formKey.currentState!.validate()) {}
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+              email=_emailController.text;
+
+      });
+      resetPassword();
+    }
+
     },
     style: ElevatedButton.styleFrom(
     primary: Colors.white,
@@ -123,13 +172,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     ),
     child: Ink(
     decoration: BoxDecoration(
-    boxShadow: <BoxShadow>[
-    BoxShadow(
-    color: Color(0xfff05945),
-    offset: const Offset(1.1, 1.1),
-    blurRadius: 10.0),
-    ],
-    color: Color(0xffF05945),
+     color: Color(0xffF05945),
     borderRadius: BorderRadius.circular(12.0)),
               child: Container(
                 alignment: Alignment.center,
@@ -150,7 +193,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     ),
       ),
     ),
+      ),
 
     );
   }
 }
+
