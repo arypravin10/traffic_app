@@ -33,7 +33,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
 
   registration() async {    
-    if (password == confirmPassword) {
+    if (password == confirmPassword)  {
       try {
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password);

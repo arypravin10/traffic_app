@@ -24,21 +24,49 @@ class _otpState extends State<otp> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _otpController = TextEditingController();
 
-  bool verify() {
-    print(emailAuth.validateOtp(
+  void verify() {
+    var result=emailAuth.validateOtp(
         recipientMail: _emailController.value.text,
-        userOtp: _otpController.value.text));
+        userOtp: _otpController.value.text);
 
-    throw SignUpScreen();
+        if (result){
+          print("'Verification successful");
+           ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Color.fromARGB(255, 80, 74, 74),
+            content: Text(
+              "OTP verified successfully.",
+              style: TextStyle(fontSize: 10),
+            ),
+          ),
+        );
+          Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen(),));
+
+        }
+
+        else{
+          print("OTP not verified");
+           ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Color.fromARGB(255, 110, 108, 108),
+            content: Text(
+              "OTP not verified.",
+              style: TextStyle(fontSize: 10),
+            ),
+          ),
+        );
+        }
+
   }
 
   void sendOtp() async {
     bool result = await emailAuth.sendOtp(
         recipientMail: _emailController.value.text, otpLength: 5);
     if (result) {
+
       print('Otp sent');
     } else if (!result) {
-      print("problem in sending otp");
+      print("Problem in sending otp");
     }
   }
 
@@ -86,8 +114,13 @@ class _otpState extends State<otp> {
                     SizedBox(
                       height: 30,
                     ),
+
                     ElevatedButton(
-                        onPressed: () => verify(), child: Text('Verify OTP'))
+                      
+                        onPressed: () => verify(), 
+                        child: const Text('Verify OTP'),
+                        )
+                        
                   ],
                 ),
               ),
