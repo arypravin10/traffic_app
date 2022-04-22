@@ -3,6 +3,7 @@ import 'package:traffic_simulator/homescreen.dart';
 import 'package:traffic_simulator/otp.dart';
 import 'package:traffic_simulator/forgotPassword.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:traffic_simulator/signUpScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -340,7 +341,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Material(
                     child: InkWell(
                   onTap: () {
-Navigator.push(context, MaterialPageRoute(builder: (context) => otp(),));                 },
+Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen(),));                 },
                   child: Text(
                     "Sign Up",
                     style: TextStyle(
