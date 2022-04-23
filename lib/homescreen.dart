@@ -720,6 +720,82 @@ class Traffic_rules extends StatelessWidget {
         title: Text('Traffic Rules'),
         backgroundColor: Colors.red,
       ),
+       body: StreamBuilder(
+          stream: FirebaseFirestore.instance.collection("t_rules").snapshots(),
+          builder: (BuildContext context,
+              AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+            if (snapshot.hasData && snapshot.data != null) {
+              print("Total documents :${snapshot.data!.docs.length}");
+              if (snapshot.data!.docs.isNotEmpty) {
+                return ListView.separated(
+                  itemBuilder: (__, int index) {
+
+                    Map<String,dynamic> docData=snapshot.data!.docs[index].data();
+                    if(docData.isEmpty){
+                      return SizedBox(
+                        child: Text("Document is empty",textAlign: TextAlign.center  ,),
+                      );
+                    }
+                    String image =
+                        snapshot.data!.docs.elementAt(index).get("image");
+                    String heading =
+                        snapshot.data!.docs.elementAt(index).get("heading");
+                    String message =
+                        snapshot.data!.docs.elementAt(index).get("message");
+
+                    return Container(
+                      child:SingleChildScrollView(
+                        child:
+                        
+                      Padding(padding: EdgeInsets.all(20),child:
+                      Row(
+
+                        children: [
+                         
+
+                        Container(
+                            height: 80,
+                            width: 90,
+
+                          child:Image.network(image,fit: BoxFit.fill,)  
+                          ,
+                          
+
+                          ),
+                          SizedBox(width: 25,),
+                          Container(
+                            child: Column(children: [
+                               Text(heading,style:TextStyle(fontSize: 20,color: Colors.red) ,) ,
+                          SizedBox(height: 10,),
+                                                     Text(message),
+
+                            ],),
+                          )
+
+
+                                           
+                        ],
+                      )
+                      )
+                      )
+                    );
+                  },
+                  separatorBuilder: (__, ___) {
+                    return Divider();
+                  },
+                  itemCount: snapshot.data!.docs.length,
+                );
+              } else {
+                return const Center(
+                  child: Text("Document not available"),
+                );
+              }
+            } else {
+              return const Center(
+                child: Text("Getting error"),
+              );
+            }
+          }),
     );
   }
 }
@@ -736,6 +812,7 @@ class Traffic_stations extends StatelessWidget {
         title: Text('Traffic Stations'),
         backgroundColor: Colors.grey,
       ),
+       
     );
   }
 }
