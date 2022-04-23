@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:traffic_simulator/inputTextWidget.dart';
-import 'LoginScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:traffic_simulator/LoginScreen.dart';
 
 
 
@@ -27,7 +26,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
     resetPassword() async {
     try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: _emailController.text).then((value) => LoginScreen());
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.orangeAccent,
@@ -126,7 +125,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   ),
                   TextFormField(
                     decoration: InputDecoration(
-                      
+                       
                       labelText: "Enter your email address",
                       icon: Icon(Icons.email),
                       ),
@@ -138,6 +137,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           print('Please enter a valid email');
 
                         }
+                        else{
+                          value=email;
+                        }
                         return null;
                       },
                       obscureText: false,
@@ -148,18 +150,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     SizedBox(
     height: 15.0,
     ),
+    
     Container(
     height: 55.0,
     child: ElevatedButton(
     onPressed: () async {
     if (_formKey.currentState!.validate()) {
-      setState(() {
-              email=_emailController.text;
-
-      });
       resetPassword();
     }
-
     },
     style: ElevatedButton.styleFrom(
     primary: Colors.white,
@@ -179,7 +177,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           child: Text(
                             "Continue",
                             textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white, fontSize: 25),
+                            style: TextStyle(color: Colors.white, fontSize: 15),
 
                         ),
                       ),

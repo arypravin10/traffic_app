@@ -1,10 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'pict_slide.dart';
 import 'time_date.dart';
 import 'drawer.dart';
 import 'dart:ui';
-
-import 'package:firebase_core/firebase_core.dart';
 
 class homepage extends StatefulWidget {
   homepage({Key? key}) : super(key: key);
@@ -21,7 +20,6 @@ class _homepageState extends State<homepage> {
       appBar: AppBar(
         title: Text('Traffic Simulator '),
         centerTitle: true,
-        
       ),
       backgroundColor: Color.fromARGB(255, 243, 245, 248),
 
@@ -62,7 +60,6 @@ class _homepageState extends State<homepage> {
             ),
           ),
           Container(
-            
             height: 50,
             width: MediaQuery.of(context).size.width / 4,
             decoration:
@@ -121,8 +118,6 @@ class _homepageState extends State<homepage> {
                   textColor: Colors.blue,
                 ),
               ),
-
-          
 
               SizedBox(
                 height: 15,
@@ -276,218 +271,336 @@ class _homepageState extends State<homepage> {
                                 //     ],
                                 //   ),
                                 // ),
-                               
 
-                                                               Card(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25)),
-                                  child: SingleChildScrollView(
-                                    
-                                    child: Padding(padding: EdgeInsets.all(4.5),
-                                    child:
-                                    Column(
-                                    
-                                      children: [
-                                        Container(
-                                          
-                                          
-                                          child: ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white),shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-                                         ),
-                                          onPressed: (){Navigator.push(context, MaterialPageRoute(builder: ((context) => Traffic_news())));}, 
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                child: Icon(Icons.traffic,color: Colors.black,size: 40,),
-                                              ),
-
-                                              Container(
-                                                child: Text('Traffic News',style: TextStyle(color: Colors.blue),),
-                                              )
-                                            ],
-                                          ),),
-                                        )
-                                      ],
-                                      
-                                    ),
-                                  ),
-                                  )
-                                ),
-
-                                                                Card(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25)),
-                                  child: SingleChildScrollView(
-                                    
-                                    child: Padding(padding: EdgeInsets.all(3.5),
-                                    child:
-                                    Column(
-                                    
-                                      children: [
-                                        Container(
-                                          
-                                          
-                                          child: ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white),shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-                                         ),
-                                          onPressed: (){Navigator.push(context, MaterialPageRoute(builder: ((context) => Traffic_rules())));}, 
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                child: Icon(Icons.traffic,color: Colors.black,size: 42,),
-                                              ),
-
-                                              Container(
-                                                child: Text('Traffic Rules',style: TextStyle(color: Colors.blue),),
-                                              )
-                                            ],
-                                          ),),
-                                        )
-                                      ],
-                                      
-                                    ),
-                                  ),
-                                  )
-                                ),
-
-                                                                Card(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25)),
-                                  child: SingleChildScrollView(
-                                    
-                                    child: Padding(padding: EdgeInsets.all(2.5),
-                                    child:
-                                    Column(
-                                    
-                                      children: [
-                                        Container(
-                                          
-                                          
-                                          child: ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white),shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-                                         ),
-                                          onPressed: (){Navigator.push(context, MaterialPageRoute(builder: ((context) => Traffic_stations())));}, 
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                child: Icon(Icons.local_police,color: Colors.black,size:43,),
-                                              ),
-
-                                              Container(
-                                                child: Text('Traffic Station',style: TextStyle(color: Colors.blue),),
-                                              )
-                                            ],
-                                          ),),
-                                        )
-                                      ],
-                                      
-                                    ),
-                                  ),
-                                  )
-                                ),
-
-                                                                Card(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25)),
-                                  child: SingleChildScrollView(
-                                    
-                                    child: Padding(padding: EdgeInsets.all(1.0),
-                                    child:
-                                    Column(
-                                    
-                                      children: [
-                                        Container(
-                                          
-                                          
-                                          child: ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white),shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-                                         ),
-                                          onPressed: (){Navigator.push(context, MaterialPageRoute(builder: ((context) => Parking_areas())));}, 
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                child: Icon(Icons.local_parking,color: Colors.black,size: 43,),
-                                              ),
-
-                                              Container(
-                                                child: Text('Parking Areas',style: TextStyle(color: Colors.blue),),
-                                              )
-                                            ],
-                                          ),),
-                                        )
-                                      ],
-                                      
-                                    ),
-                                  ),
-                                  )
-                                ),
-
-                                                                Card(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25)),
-                                  child: SingleChildScrollView(
-                                    
-                                    child: Padding(padding: EdgeInsets.all(2.1),
-                                    child:
-                                    Column(
-                                    
-                                      children: [
-                                        Container(
-                                          
-                                          
-                                          child: ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white),shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-                                         ),
-                                          onPressed: (){Navigator.push(context, MaterialPageRoute(builder: ((context) => Fuel_station())));}, 
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                child: Icon(Icons.ev_station,color: Colors.black,size: 42,),
-                                              ),
-
-                                              Container(
-                                                child: Text('Fuel Station',style: TextStyle(color: Colors.blue),),
-                                              )
-                                            ],
-                                          ),),
-                                        )
-                                      ],
-                                      
-                                    ),
-                                  ),
-                                  )
-                                ),
-                               
                                 Card(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25)),
-                                  child: SingleChildScrollView(
-                                    
-                                    child: Padding(padding: EdgeInsets.all(1.5),
-                                    child:
-                                    Column(
-                                    
-                                      children: [
-                                        Container(
-                                          
-                                          
-                                          child: ElevatedButton(style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.white),shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-                                         ),
-                                          onPressed: (){Navigator.push(context, MaterialPageRoute(builder: ((context) => Places_to_visit())));}, 
-                                          child: Column(
-                                            children: [
-                                              Container(
-                                                child: Icon(Icons.place,color: Colors.black,size: 44,),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(25)),
+                                    child: SingleChildScrollView(
+                                      child: Padding(
+                                        padding: EdgeInsets.all(4.5),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              child: ElevatedButton(
+                                                style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          Colors.white),
+                                                  shape:
+                                                      MaterialStateProperty.all(
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20))),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: ((context) =>
+                                                              Traffic_news())));
+                                                },
+                                                child: Column(
+                                                  children: [
+                                                    Container(
+                                                      child: Icon(
+                                                        Icons.traffic,
+                                                        color: Colors.black,
+                                                        size: 40,
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      child: Text(
+                                                        'Traffic News',
+                                                        style: TextStyle(
+                                                            color: Colors.blue),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
                                               ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )),
 
-                                              Container(
-                                                child: Text('Places\nto Visit',style: TextStyle(color: Colors.blue),),
-                                              )
-                                            ],
-                                          ),),
-                                        )
-                                      ],
-                                      
-                                    ),
-                                  ),
-                                  )
-                                ),
+                                Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(25)),
+                                    child: SingleChildScrollView(
+                                      child: Padding(
+                                        padding: EdgeInsets.all(3.5),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              child: ElevatedButton(
+                                                style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          Colors.white),
+                                                  shape:
+                                                      MaterialStateProperty.all(
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20))),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: ((context) =>
+                                                              Traffic_rules())));
+                                                },
+                                                child: Column(
+                                                  children: [
+                                                    Container(
+                                                      child: Icon(
+                                                        Icons.traffic,
+                                                        color: Colors.black,
+                                                        size: 42,
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      child: Text(
+                                                        'Traffic Rules',
+                                                        style: TextStyle(
+                                                            color: Colors.blue),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )),
 
+                                Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(25)),
+                                    child: SingleChildScrollView(
+                                      child: Padding(
+                                        padding: EdgeInsets.all(2.5),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              child: ElevatedButton(
+                                                style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          Colors.white),
+                                                  shape:
+                                                      MaterialStateProperty.all(
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20))),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: ((context) =>
+                                                              Traffic_stations())));
+                                                },
+                                                child: Column(
+                                                  children: [
+                                                    Container(
+                                                      child: Icon(
+                                                        Icons.local_police,
+                                                        color: Colors.black,
+                                                        size: 43,
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      child: Text(
+                                                        'Traffic Station',
+                                                        style: TextStyle(
+                                                            color: Colors.blue),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )),
+
+                                Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(25)),
+                                    child: SingleChildScrollView(
+                                      child: Padding(
+                                        padding: EdgeInsets.all(1.0),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              child: ElevatedButton(
+                                                style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          Colors.white),
+                                                  shape:
+                                                      MaterialStateProperty.all(
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20))),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: ((context) =>
+                                                              Parking_areas())));
+                                                },
+                                                child: Column(
+                                                  children: [
+                                                    Container(
+                                                      child: Icon(
+                                                        Icons.local_parking,
+                                                        color: Colors.black,
+                                                        size: 43,
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      child: Text(
+                                                        'Parking Areas',
+                                                        style: TextStyle(
+                                                            color: Colors.blue),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )),
+
+                                Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(25)),
+                                    child: SingleChildScrollView(
+                                      child: Padding(
+                                        padding: EdgeInsets.all(2.1),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              child: ElevatedButton(
+                                                style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          Colors.white),
+                                                  shape:
+                                                      MaterialStateProperty.all(
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20))),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: ((context) =>
+                                                              Fuel_station())));
+                                                },
+                                                child: Column(
+                                                  children: [
+                                                    Container(
+                                                      child: Icon(
+                                                        Icons.ev_station,
+                                                        color: Colors.black,
+                                                        size: 42,
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      child: Text(
+                                                        'Fuel Station',
+                                                        style: TextStyle(
+                                                            color: Colors.blue),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )),
+
+                                Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(25)),
+                                    child: SingleChildScrollView(
+                                      child: Padding(
+                                        padding: EdgeInsets.all(1.5),
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              child: ElevatedButton(
+                                                style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          Colors.white),
+                                                  shape:
+                                                      MaterialStateProperty.all(
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20))),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: ((context) =>
+                                                              Places_to_visit())));
+                                                },
+                                                child: Column(
+                                                  children: [
+                                                    Container(
+                                                      child: Icon(
+                                                        Icons.place,
+                                                        color: Colors.black,
+                                                        size: 44,
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      child: Text(
+                                                        'Places\nto Visit',
+                                                        style: TextStyle(
+                                                            color: Colors.blue),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    )),
                               ],
                             ),
                           ],
@@ -517,10 +630,83 @@ class Traffic_news extends StatelessWidget {
         title: Text('News'),
         backgroundColor: Colors.blue,
       ),
+      body: StreamBuilder(
+          stream: FirebaseFirestore.instance.collection("News").snapshots(),
+          builder: (BuildContext context,
+              AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+            if (snapshot.hasData && snapshot.data != null) {
+              print("Total documents :${snapshot.data!.docs.length}");
+              if (snapshot.data!.docs.isNotEmpty) {
+                return ListView.separated(
+                  itemBuilder: (__, int index) {
+
+                    Map<String,dynamic> docData=snapshot.data!.docs[index].data();
+                    if(docData.isEmpty){
+                      return SizedBox(
+                        child: Text("Document is empty",textAlign: TextAlign.center  ,),
+                      );
+                    }
+                    String image =
+                        snapshot.data!.docs.elementAt(index).get("image");
+                    String heading =
+                        snapshot.data!.docs.elementAt(index).get("heading");
+                    String message =
+                        snapshot.data!.docs.elementAt(index).get("message");
+
+                    return Container(
+                      child:SingleChildScrollView(
+                        child:
+                        
+                      Padding(padding: EdgeInsets.all(20),child:
+                      Column(
+
+                        children: [
+                          Text(heading,style:TextStyle(fontSize: 20,) ,) ,
+                          SizedBox(height: 10,),
+
+                        Container(
+                            height: 180,
+                            width: 360,
+
+                          child:Image.network(image,fit: BoxFit.fill,)  
+                          ,
+                          
+
+                          ),
+                          SizedBox(height: 10,),
+
+                           Text(message),
+
+                                           
+                        ],
+                      )
+                      )
+                      )
+                    );
+                  },
+                  separatorBuilder: (__, ___) {
+                    return Divider();
+                  },
+                  itemCount: snapshot.data!.docs.length,
+                );
+              } else {
+                return const Center(
+                  child: Text("Document not available"),
+                );
+              }
+            } else {
+              return const Center(
+                child: Text("Getting error"),
+              );
+            }
+          }),
     );
   }
 }
 
+mixin Firestore {
+  static var instance;
+}
 
 // for traffic rules
 
@@ -530,8 +716,10 @@ class Traffic_rules extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Traffic Rules'),
-      backgroundColor: Colors.red,),
+      appBar: AppBar(
+        title: Text('Traffic Rules'),
+        backgroundColor: Colors.red,
+      ),
     );
   }
 }
@@ -543,10 +731,12 @@ class Traffic_stations extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(
-      title: Text('Traffic Stations'),
-      backgroundColor: Colors.grey,
-    ),);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Traffic Stations'),
+        backgroundColor: Colors.grey,
+      ),
+    );
   }
 }
 
@@ -555,9 +745,12 @@ class Parking_areas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(
-      title: Text('Areas For Parking'),
-      backgroundColor: Colors.pink,),);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Areas For Parking'),
+        backgroundColor: Colors.pink,
+      ),
+    );
   }
 }
 
@@ -568,26 +761,26 @@ class Fuel_station extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
- return Scaffold(appBar: AppBar(
-      title: Text('Fuel Stations'),
-      backgroundColor: Colors.brown,),
-   );  }
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Fuel Stations'),
+        backgroundColor: Colors.brown,
+      ),
+    );
+  }
 }
-
-
 
 // for places to visit
 
 class Places_to_visit extends StatelessWidget {
-  const Places_to_visit({ Key? key }) : super(key: key);
+  const Places_to_visit({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(
+    return Scaffold(
+        appBar: AppBar(
       title: Text('Places to Visit'),
       backgroundColor: Colors.green,
-      
-    )
-    );
+    ));
   }
 }
