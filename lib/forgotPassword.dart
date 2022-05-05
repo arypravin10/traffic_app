@@ -74,7 +74,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             ),
             ),
         //centerTitle: true,
-          backgroundColor: Colors.green,
+          backgroundColor: Color.fromARGB(255, 45, 46, 45),
 
       ),
       body: Padding(
@@ -168,32 +168,35 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     borderRadius: BorderRadius.all(Radius.circular(0)),
     ),
     ),
-    child: Ink(
-    decoration: BoxDecoration(
-     color: Color(0xffF05945),
-    borderRadius: BorderRadius.circular(12.0)),
-              child: Container(
-                alignment: Alignment.center,
+    
+     child: Ink(
+                        decoration: BoxDecoration(
+                            boxShadow: <BoxShadow>[
+                              BoxShadow(
+                                  color: Color.fromARGB(255, 155, 186, 219),
+                                  offset: const Offset(1.1, 1.1),
+                                  blurRadius: 10.0),
+                            ],
+                            color: Color.fromARGB(255, 0, 1, 10),
+                            borderRadius: BorderRadius.circular(10.0)),
+                        child: Container(
+                          alignment: Alignment.center,
                           child: Text(
                             "Continue",
                             textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white, fontSize: 15),
-
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
                         ),
                       ),
                     ),
                   ),
-
+                ],
               ),
-  ],
+            ),
+          ),
+        ),
       ),
-    ),
-    ),
-      ),
-    ),
-      ),
-
+      )
     );
   }
 }
-

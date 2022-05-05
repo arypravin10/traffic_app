@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:traffic_simulator/ui/splash.dart';
 import 'pict_slide.dart';
 import 'time_date.dart';
 import 'drawer.dart';
@@ -79,6 +80,27 @@ class _homepageState extends State<homepage> {
           padding: EdgeInsets.all(25),
           child: Column(
             children: <Widget>[
+              Container(
+                
+                height: 40,
+                  child: ElevatedButton(
+                    
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Splash(),
+                      ));
+                },
+                child: Text('Go to Map',style: TextStyle(color: Colors.red),),
+                
+                
+              )),
+
+              SizedBox(
+                height: 10,
+              ),
+
               Container(
                 child: date_time(),
               ),
@@ -639,11 +661,14 @@ class Traffic_news extends StatelessWidget {
               if (snapshot.data!.docs.isNotEmpty) {
                 return ListView.separated(
                   itemBuilder: (__, int index) {
-
-                    Map<String,dynamic> docData=snapshot.data!.docs[index].data();
-                    if(docData.isEmpty){
+                    Map<String, dynamic> docData =
+                        snapshot.data!.docs[index].data();
+                    if (docData.isEmpty) {
                       return SizedBox(
-                        child: Text("Document is empty",textAlign: TextAlign.center  ,),
+                        child: Text(
+                          "Document is empty",
+                          textAlign: TextAlign.center,
+                        ),
                       );
                     }
                     String image =
@@ -654,35 +679,34 @@ class Traffic_news extends StatelessWidget {
                         snapshot.data!.docs.elementAt(index).get("message");
 
                     return Container(
-                      child:SingleChildScrollView(
-                        child:
-                        
-                      Padding(padding: EdgeInsets.all(20),child:
-                      Column(
-
-                        children: [
-                          Text(heading,style:TextStyle(fontSize: 20,) ,) ,
-                          SizedBox(height: 10,),
-
-                        Container(
-                            height: 180,
-                            width: 360,
-
-                          child:Image.network(image,fit: BoxFit.fill,)  
-                          ,
-                          
-
-                          ),
-                          SizedBox(height: 10,),
-
-                           Text(message),
-
-                                           
-                        ],
-                      )
-                      )
-                      )
-                    );
+                        child: SingleChildScrollView(
+                            child: Padding(
+                                padding: EdgeInsets.all(20),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      heading,
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Container(
+                                      height: 180,
+                                      width: 360,
+                                      child: Image.network(
+                                        image,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(message),
+                                  ],
+                                ))));
                   },
                   separatorBuilder: (__, ___) {
                     return Divider();
@@ -720,7 +744,7 @@ class Traffic_rules extends StatelessWidget {
         title: Text('Traffic Rules'),
         backgroundColor: Colors.red,
       ),
-       body: StreamBuilder(
+      body: StreamBuilder(
           stream: FirebaseFirestore.instance.collection("t_rules").snapshots(),
           builder: (BuildContext context,
               AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
@@ -729,11 +753,14 @@ class Traffic_rules extends StatelessWidget {
               if (snapshot.data!.docs.isNotEmpty) {
                 return ListView.separated(
                   itemBuilder: (__, int index) {
-
-                    Map<String,dynamic> docData=snapshot.data!.docs[index].data();
-                    if(docData.isEmpty){
+                    Map<String, dynamic> docData =
+                        snapshot.data!.docs[index].data();
+                    if (docData.isEmpty) {
                       return SizedBox(
-                        child: Text("Document is empty",textAlign: TextAlign.center  ,),
+                        child: Text(
+                          "Document is empty",
+                          textAlign: TextAlign.center,
+                        ),
                       );
                     }
                     String image =
@@ -744,41 +771,42 @@ class Traffic_rules extends StatelessWidget {
                         snapshot.data!.docs.elementAt(index).get("message");
 
                     return Container(
-                      child:SingleChildScrollView(
-                        child:
-                        
-                      Padding(padding: EdgeInsets.all(20),child:
-                      Row(
-
-                        children: [
-                         
-
-                        Container(
-                            height: 80,
-                            width: 90,
-
-                          child:Image.network(image,fit: BoxFit.fill,)  
-                          ,
-                          
-
-                          ),
-                          SizedBox(width: 25,),
-                          Container(
-                            child: Column(children: [
-                               Text(heading,style:TextStyle(fontSize: 20,color: Colors.red) ,) ,
-                          SizedBox(height: 10,),
-                                                     Text(message),
-
-                            ],),
-                          )
-
-
-                                           
-                        ],
-                      )
-                      )
-                      )
-                    );
+                        child: SingleChildScrollView(
+                            child: Padding(
+                                padding: EdgeInsets.all(20),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 80,
+                                      width: 90,
+                                      child: Image.network(
+                                        image,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 25,
+                                    ),
+                                    Container(
+                                      child: Center(child:
+                                      Column(
+                                        children: [
+                                          Text(
+                                            heading,
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.red),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(message),
+                                        ],
+                                      ),
+                                    )
+                                    )
+                                  ],
+                                ))));
                   },
                   separatorBuilder: (__, ___) {
                     return Divider();
@@ -812,7 +840,6 @@ class Traffic_stations extends StatelessWidget {
         title: Text('Traffic Stations'),
         backgroundColor: Colors.grey,
       ),
-       
     );
   }
 }
@@ -858,6 +885,79 @@ class Places_to_visit extends StatelessWidget {
         appBar: AppBar(
       title: Text('Places to Visit'),
       backgroundColor: Colors.green,
-    ));
+    ),
+    body: StreamBuilder(
+          stream: FirebaseFirestore.instance.collection("places_visit").snapshots(),
+          builder: (BuildContext context,
+              AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+            if (snapshot.hasData && snapshot.data != null) {
+              print("Total documents :${snapshot.data!.docs.length}");
+              if (snapshot.data!.docs.isNotEmpty) {
+                return ListView.separated(
+                  itemBuilder: (__, int index) {
+                    Map<String, dynamic> docData =
+                        snapshot.data!.docs[index].data();
+                    if (docData.isEmpty) {
+                      return SizedBox(
+                        child: Text(
+                          "Document is empty",
+                          textAlign: TextAlign.center,
+                        ),
+                      );
+                    }
+                    String image =
+                        snapshot.data!.docs.elementAt(index).get("image");
+                    String heading =
+                        snapshot.data!.docs.elementAt(index).get("heading");
+                    String message =
+                        snapshot.data!.docs.elementAt(index).get("message");
+
+                    return Container(
+                        child: SingleChildScrollView(
+                            child: Padding(
+                                padding: EdgeInsets.all(20),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      heading,
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Container(
+                                      height: 180,
+                                      width: 360,
+                                      child: Image.network(
+                                        image,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text(message),
+                                  ],
+                                ))));
+                  },
+                  separatorBuilder: (__, ___) {
+                    return Divider();
+                  },
+                  itemCount: snapshot.data!.docs.length,
+                );
+              } else {
+                return const Center(
+                  child: Text("Document not available"),
+                );
+              }
+            } else {
+              return const Center(
+                child: Text("Getting error"),
+              );
+            }
+          }),
+    );
   }
 }

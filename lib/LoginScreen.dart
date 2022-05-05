@@ -132,12 +132,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                 builder: (context) => ForgotPassword(),
                               ));
                         },
+                        
                         child: Text(
                           "Forgot Password ?",
-                          textAlign: TextAlign.end,
+                          textAlign: TextAlign.right,
                           style: TextStyle(
                               fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                              
                               color: Color.fromARGB(255, 218, 13, 13)),
                         ),
                       ),
@@ -167,6 +168,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(0)),
                     ),
                   ),
+                  
                   child: Ink(
                     decoration: BoxDecoration(
                         boxShadow: <BoxShadow>[
@@ -178,6 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Color.fromARGB(
                             255, 12, 51, 109), // Color(0xffF05945),
                         borderRadius: BorderRadius.circular(12.0)),
+                        
                     child: Container(
                       alignment: Alignment.center,
                       child: Text(
