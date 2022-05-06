@@ -14,11 +14,11 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   initializeLocationAndSave();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    initializeLocationAndSave();
+  }
 
   void initializeLocationAndSave() async {
     // Ensure all permissions are collected for Locations

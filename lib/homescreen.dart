@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:traffic_simulator/screens/home.dart';
 import 'package:traffic_simulator/ui/splash.dart';
 import 'pict_slide.dart';
 import 'time_date.dart';
@@ -89,7 +90,7 @@ class _homepageState extends State<homepage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Splash(),
+                        builder: (context) => const Splash(),
                       ));
                 },
                 child: Text('Go to Map',style: TextStyle(color: Colors.red),),
