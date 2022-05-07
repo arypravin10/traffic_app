@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'LoginScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 
 late SharedPreferences sharedPreferences;
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPreferences = await SharedPreferences.getInstance();
+      await dotenv.load(fileName: "assets/config/.env");
 
   runApp(MyApp());
 }

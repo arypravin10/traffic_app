@@ -15,6 +15,9 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
+  int index=0;
+
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,51 +30,73 @@ class _homepageState extends State<homepage> {
 
 // For the bottom navigation bar
 
-      bottomNavigationBar: Row(
-        children: [
-          Container(
-            height: 50,
-            width: MediaQuery.of(context).size.width / 4,
-            /*for 4 icons to be inserted*/
-            decoration:
-                BoxDecoration(color: Color.fromARGB(255, 244, 246, 247)),
-            child: Icon(
-              Icons.settings,
-              size: 30,
-            ),
-          ),
-          Container(
-            height: 50,
-            width: MediaQuery.of(context).size.width / 4,
-            /*for 4 icons to be inserted*/
-            decoration:
-                BoxDecoration(color: Color.fromARGB(255, 244, 246, 247)),
-            child: Icon(
-              Icons.home,
-              size: 30,
-            ),
-          ),
-          Container(
-            height: 50,
-            width: MediaQuery.of(context).size.width / 4,
-            decoration:
-                BoxDecoration(color: Color.fromARGB(255, 244, 246, 247)),
-            child: Icon(
-              Icons.search,
-              size: 30,
-            ),
-          ),
-          Container(
-            height: 50,
-            width: MediaQuery.of(context).size.width / 4,
-            decoration:
-                BoxDecoration(color: Color.fromARGB(255, 244, 246, 247)),
-            child: Icon(
-              Icons.person,
-              size: 30,
-            ),
-          ),
-        ],
+      // bottomNavigationBar: Row(
+      //   children: [
+      //     Container(
+          
+      //       height: 50,
+      //       width: MediaQuery.of(context).size.width / 4,
+      //       /*for 4 icons to be inserted*/
+      //       decoration:
+      //           BoxDecoration(color: Color.fromARGB(255, 244, 246, 247)),
+      //       child: Icon(
+            
+      //         Icons.settings,
+      //         size: 30,
+      //       ),
+      //     ),
+      //     Container(
+      //       height: 50,
+      //       width: MediaQuery.of(context).size.width / 4,
+      //       /*for 4 icons to be inserted*/
+      //       decoration:
+      //           BoxDecoration(color: Color.fromARGB(255, 244, 246, 247)),
+      //       child: Icon(
+      //         Icons.home,
+      //         size: 30,
+      //       ),
+      //     ),
+      //     Container(
+      //       height: 50,
+      //       width: MediaQuery.of(context).size.width / 4,
+      //       decoration:
+      //           BoxDecoration(color: Color.fromARGB(255, 244, 246, 247)),
+      //       child: Icon(
+      //         Icons.search,
+      //         size: 30,
+      //       ),
+      //     ),
+      //     Container(
+      //       height: 50,
+      //       width: MediaQuery.of(context).size.width / 4,
+      //       decoration:
+      //           BoxDecoration(color: Color.fromARGB(255, 244, 246, 247)),
+      //       child: Icon(
+      //         Icons.person,
+      //         size: 30,
+      //       ),
+      //     ),
+      //   ],
+      // ),
+
+      bottomNavigationBar:NavigationBarTheme(data: NavigationBarThemeData(indicatorColor: Color.fromARGB(255, 205, 223, 165),
+      labelTextStyle: MaterialStateProperty.all(TextStyle(fontSize: 12,fontWeight: FontWeight.w600))),
+      
+      child:
+       NavigationBar(
+         height: 60,
+         selectedIndex: index,
+         onDestinationSelected:(index)=>setState(() => this.index=index) ,
+
+         destinations: const [
+       NavigationDestination(
+         icon: Icon(Icons.person), label: 'Profile'),
+       NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+      NavigationDestination(icon: Icon(Icons.notification_add), label: 'Notifications'),
+      NavigationDestination(icon: Icon(Icons.settings), label: 'Settings'),
+
+      ],
+       )
       ),
 
       // For the centre body part

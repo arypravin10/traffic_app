@@ -21,7 +21,7 @@ Future<List> getParsedResponseForQuery(String value) async {
   if (query == '') return parsedResponses;
 
   // Else search and then send response
-  var response = json.decode(await getSearchResultsFromQueryUsingMapbox(query));
+  Map<String,dynamic>  response = Map<String,dynamic>.from(json.decode(await getSearchResultsFromQueryUsingMapbox(query)));
 
   List features = response['features'];
   for (var feature in features) {
@@ -38,8 +38,8 @@ Future<List> getParsedResponseForQuery(String value) async {
 
 // ----------------------------- Mapbox Reverse Geocoding -----------------------------
 Future<Map> getParsedReverseGeocoding(LatLng latLng) async {
-  var response =
-      json.decode(await getReverseGeocodingGivenLatLngUsingMapbox(latLng));
+  Map<String,dynamic> response = Map<String,dynamic>.from(
+      json.decode(await getReverseGeocodingGivenLatLngUsingMapbox(latLng)));
   Map feature = response['features'][0];
   Map revGeocode = {
     'name': feature['text'],
