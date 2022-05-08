@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:traffic_simulator/screens/home.dart';
-import 'package:traffic_simulator/ui/splash.dart';
+import 'package:external_app_launcher/external_app_launcher.dart';
+
 import 'pict_slide.dart';
 import 'time_date.dart';
 import 'drawer.dart';
@@ -15,6 +15,12 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
+
+   @override
+  void initState() {
+    super.initState();
+  }
+
   int index=0;
 
  
@@ -79,7 +85,7 @@ class _homepageState extends State<homepage> {
       //   ],
       // ),
 
-      bottomNavigationBar:NavigationBarTheme(data: NavigationBarThemeData(indicatorColor: Color.fromARGB(255, 205, 223, 165),
+      bottomNavigationBar:NavigationBarTheme(data: NavigationBarThemeData(indicatorColor: Color.fromARGB(255, 64, 80, 133),
       labelTextStyle: MaterialStateProperty.all(TextStyle(fontSize: 12,fontWeight: FontWeight.w600))),
       
       child:
@@ -111,12 +117,11 @@ class _homepageState extends State<homepage> {
                 height: 40,
                   child: ElevatedButton(
                     
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Splash(),
-                      ));
+                onPressed: () async {
+                  await LaunchApp.openApp(
+                    androidPackageName: 'com.example.mapbox_turn_by_turn',
+                    openStore: true
+                  );
                 },
                 child: Text('Go to Map',style: TextStyle(color: Colors.red),),
                 
@@ -703,7 +708,7 @@ class Traffic_news extends StatelessWidget {
                         snapshot.data!.docs.elementAt(index).get("heading");
                     String message =
                         snapshot.data!.docs.elementAt(index).get("message");
-
+                   
                     return Container(
                         child: SingleChildScrollView(
                             child: Padding(
@@ -727,10 +732,12 @@ class Traffic_news extends StatelessWidget {
                                         fit: BoxFit.fill,
                                       ),
                                     ),
+                                    SizedBox(height:20),
+                                    Text(message),
                                     SizedBox(
                                       height: 10,
                                     ),
-                                    Text(message),
+                                  
                                   ],
                                 ))));
                   },
@@ -795,6 +802,7 @@ class Traffic_rules extends StatelessWidget {
                         snapshot.data!.docs.elementAt(index).get("heading");
                     String message =
                         snapshot.data!.docs.elementAt(index).get("message");
+                     
 
                     return Container(
                         child: SingleChildScrollView(
@@ -827,6 +835,8 @@ class Traffic_rules extends StatelessWidget {
                                             height: 10,
                                           ),
                                           Text(message),
+                                            Text(message),
+                                    
                                         ],
                                       ),
                                     )
@@ -938,7 +948,12 @@ class Places_to_visit extends StatelessWidget {
                     String message =
                         snapshot.data!.docs.elementAt(index).get("message");
 
+                    String  others_info =
+                        snapshot.data!.docs.elementAt(index).get("others_info",);
+
+
                     return Container(
+                      color: Color.fromARGB(255, 226, 225, 225),
                         child: SingleChildScrollView(
                             child: Padding(
                                 padding: EdgeInsets.all(20),
@@ -965,7 +980,15 @@ class Places_to_visit extends StatelessWidget {
                                       height: 10,
                                     ),
                                     Text(message),
-                                  ],
+                                    SizedBox(height: 10,),
+
+                                   Container(
+                                     color: Color.fromARGB(255, 231, 200, 227),
+                                      height: 100,
+                                      width: 360,
+                                      child:Text(others_info),
+                                       ),
+                                                                      ],
                                 ))));
                   },
                   separatorBuilder: (__, ___) {

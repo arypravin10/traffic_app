@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:traffic_simulator/LoginScreen.dart';
+import 'package:traffic_simulator/homescreen.dart';
 
 
 class My_drawer extends StatefulWidget {
@@ -15,11 +16,20 @@ class _My_drawerState extends State<My_drawer> {
     return Drawer(
         child: ListView(children: [
 
-          Divider(thickness: 10,),
+UserAccountsDrawerHeader(accountName: Text('YATRA'), accountEmail: Text('yatra@gmail.com'),
+currentAccountPicture: CircleAvatar(child: ClipOval(
+  child: Image.asset('assets/everest.jpg',width: 80,height: 80,fit: BoxFit.cover,),
+),),
+decoration: BoxDecoration(
+  image: DecorationImage(image: AssetImage('assets/nepal.jpg'),fit: BoxFit.cover)
+),
+),
 
           
           ListTile(
-            onTap: (){},
+            onTap: (){
+              homepage();
+            },
             leading: Icon(Icons.home,),
             title: Text('Home'),),
 
@@ -34,11 +44,15 @@ class _My_drawerState extends State<My_drawer> {
             title: Text('About us'),),
 
              ListTile(
-            onTap: (){},
+            onTap: (){
+
+Navigator.push(context, MaterialPageRoute(builder: (context) => contactpage(),));
+              
+            },
             leading: Icon(Icons.contact_phone),
             title: Text('Contact'),),
 
-            Divider(thickness: 5,color: Colors.black,),
+            Divider(thickness: 4,color: Colors.black,),
 
              ListTile(
             onTap: () async{
@@ -50,6 +64,55 @@ class _My_drawerState extends State<My_drawer> {
         // backgroundColor: Colors.blueAccent,
 
 
+      
+    );
+  }
+}
+
+//  for contact page
+
+class contactpage extends StatelessWidget {
+  const contactpage({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("contact information"),),
+
+      body: Container(
+        child: Center(
+          child:
+        Column(
+          children: [
+            SizedBox(
+              height: 10,
+            ),
+              Container(
+                  height: 100,
+                color: Color.fromARGB(255, 248, 248, 248),
+                 
+                      child:Center( child:Text('Pravin Aryal \n9817579922 \nFlutter Developer\nKathmandu,Nepal'),)),
+
+                      SizedBox(height: 5,),
+
+                        Container(
+                  height: 100,
+                color: Color.fromARGB(255, 248, 248, 248),
+                 
+                      child:Center( child:Text('Bishal Neupane \n9869042839 \nFlutter Developer\nKathmandu,Nepal'),)),
+                     
+                      SizedBox(height: 5,),
+
+                        Container(
+                  height: 100,
+                color: Color.fromARGB(255, 248, 248, 248),
+                 
+                      child:Center( child:Text('Roshan Jaishi \n9812763413 \nFlutter Developer\nKathmandu,Nepal'),)),
+                
+          ],
+        ),
+        ),
+      ),
       
     );
   }
